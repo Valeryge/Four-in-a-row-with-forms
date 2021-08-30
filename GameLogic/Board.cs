@@ -15,11 +15,10 @@ namespace GameLogic
             ColumnIsFull
         }
 
-        // $G$ CSS-999 (-3) this members should be readonly.
-        private int m_Rows;
-        private int m_Columns;
-        private int[,] m_BoardMatrix;
-        private int[] m_AvailableIndexInColumn;
+        private readonly int m_Rows;
+        private readonly int m_Columns;
+        private readonly int[,] m_BoardMatrix;
+        private readonly int[] m_AvailableIndexInColumn;
         private bool m_Won;
         public int Rows
         {
@@ -97,6 +96,11 @@ namespace GameLogic
             }
 
             return moveResponse;
+        }
+
+        public bool IsColumnFull(int i_ColIndex)
+        {
+            return (m_AvailableIndexInColumn[i_ColIndex - 1] < 0);
         }
 
         public bool IsBoardFull()

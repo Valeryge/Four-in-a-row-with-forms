@@ -51,10 +51,10 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
 
         public SettingsForm()
         {
-            this.Size = new Size(300, 300);
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "4 in a row - Settings";
+            this.BackColor = Color.AliceBlue;
         }
 
         protected override void OnLoad(EventArgs e)
@@ -119,7 +119,7 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
 
             this.Width = m_TextboxPlayer1.Right + 40;
             m_ButtonStart.Width = this.Width - 40;
-
+            this.Height = m_ButtonStart.Bottom + 50;
         }
 
         void m_ButtonStart_Click(object sender, EventArgs e)

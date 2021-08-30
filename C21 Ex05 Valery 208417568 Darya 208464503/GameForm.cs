@@ -22,8 +22,22 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
 
         public GameForm()
         {
+            startGame();
+        }
+
+        private void startGame()
+        {
+            m_SettingsForm.FormClosed += new FormClosedEventHandler(settingsForm_FormClosed);
             m_SettingsForm.ShowDialog();
             initGameForm();
+        }
+
+        private void settingsForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                Application.Exit();
+            }
         }
 
         private void initGameForm()
@@ -188,8 +202,5 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
 
             return button;
         }
-
-
-
     }
 }

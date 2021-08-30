@@ -10,8 +10,9 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
     {
         public static void Main()
         {
-            UserInterface user = new UserInterface();
-            user.StartGame();
+            GameForm gameForm = new GameForm();
+
+            gameForm.ShowDialog();
         }
     }
 }

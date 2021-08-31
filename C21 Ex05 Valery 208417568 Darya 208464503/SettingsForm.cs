@@ -69,25 +69,27 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             int leftLocationX = 10;
             int tiltedLocationX = 20;
 
+            this.Controls.AddRange(new Control[] { m_LabelPlayers, m_LabelPlayer1, m_LabelPlayer2,
+                m_CheckBoxPlayer2, m_TextboxPlayer1, m_TextboxPlayer2, m_LabelRows, m_NumericCols,
+                m_NumericRows, m_LabelCols, m_LabelBoardSize, m_ButtonStart });
             m_LabelPlayers.Text = "Players:";
             m_LabelPlayers.Location = new Point(leftLocationX, 20);
-
             m_LabelPlayer1.Text = "Player 1:";
             m_LabelPlayer1.AutoSize = true;
             m_LabelPlayer1.Location = new Point(tiltedLocationX, 50);
-            m_TextboxPlayer1.Location = new Point(m_LabelPlayer1.Right, 50);
-
+            m_TextboxPlayer1.Location = new Point(m_LabelPlayer1.Right + 30, 50);
+            m_TextboxPlayer1.TextChanged += ValidateStartButton;
             int secondPlayerY = m_LabelPlayer1.Top + 30;
             m_CheckBoxPlayer2.Location = new Point(tiltedLocationX, secondPlayerY - 5);
+            m_CheckBoxPlayer2.Width = 10;
             m_LabelPlayer2.Text = "Player 2:";
             m_LabelPlayer2.AutoSize = true;
             m_LabelPlayer2.Location = new Point(tiltedLocationX + 15, secondPlayerY);
             m_TextboxPlayer2.Enabled = false;
             m_TextboxPlayer2.Location = new Point(m_TextboxPlayer1.Left, secondPlayerY);
-
+            m_TextboxPlayer2.TextChanged += ValidateStartButton;
             m_LabelBoardSize.Text = "Board Size:";
             m_LabelBoardSize.Location = new Point(leftLocationX, m_LabelPlayer2.Bottom + 30);
-
             int rowsColsY = m_LabelBoardSize.Top + 30;
             m_LabelRows.Text = "Rows:";
             m_LabelRows.AutoSize = true;
@@ -97,7 +99,6 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             m_NumericRows.Maximum = 10;
             m_NumericRows.Width = 35;
             m_NumericRows.Location = new Point(m_LabelRows.Right, rowsColsY);
-
             m_NumericCols.Minimum = 4;
             m_NumericCols.Width = 35;
             m_NumericCols.Maximum = 10;
@@ -106,17 +107,11 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             m_LabelCols.Text = "Cols:";
             m_LabelCols.Location = new Point(m_NumericCols.Left - 35, rowsColsY);
             m_LabelCols.AutoSize = true;
-
             m_ButtonStart.Location = new Point(leftLocationX, rowsColsY + 30);
             m_ButtonStart.Text = "Start!";
-
-            this.Controls.AddRange(new Control[] { m_LabelPlayers, m_LabelPlayer1, m_LabelPlayer2,
-                m_CheckBoxPlayer2, m_TextboxPlayer1, m_TextboxPlayer2, m_LabelRows, m_NumericCols,
-                m_NumericRows, m_LabelCols, m_LabelBoardSize, m_ButtonStart });
-
+            m_ButtonStart.Enabled = false;
             this.m_ButtonStart.Click += new EventHandler(m_ButtonStart_Click);
             this.m_CheckBoxPlayer2.CheckedChanged += new EventHandler(m_CheckBoxPlayer2_Click);
-
             this.Width = m_TextboxPlayer1.Right + 40;
             m_ButtonStart.Width = this.Width - 40;
             this.Height = m_ButtonStart.Bottom + 50;
@@ -125,7 +120,19 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
         void m_ButtonStart_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
-            this.Close();
+            this.Hide();
+        }
+
+        void ValidateStartButton(object sender, EventArgs e)
+        {
+            if (m_TextboxPlayer1.Text != "" && (m_CheckBoxPlayer2.Checked == false ||
+                (m_CheckBoxPlayer2.Checked == true && m_TextboxPlayer2.Text != "")))
+            {
+                m_ButtonStart.Enabled = true;
+            } else
+            {
+                m_ButtonStart.Enabled = false;
+            }
         }
 
         void m_CheckBoxPlayer2_Click(object sender, EventArgs e)
@@ -133,10 +140,18 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             if ((sender as CheckBox).Checked)
             {
                 m_TextboxPlayer2.Enabled = true;
+                if (m_TextboxPlayer2.Text == "")
+                {
+                    m_ButtonStart.Enabled = false;
+                }
             }
             else
             {
                 m_TextboxPlayer2.Enabled = false;
+                if (m_TextboxPlayer1.Text != "")
+                {
+                    m_ButtonStart.Enabled = true;
+                }
             }
         }
     }

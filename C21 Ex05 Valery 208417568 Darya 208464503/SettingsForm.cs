@@ -54,7 +54,6 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             this.FormBorderStyle = FormBorderStyle.FixedToolWindow;
             this.StartPosition = FormStartPosition.CenterScreen;
             this.Text = "4 in a row - Settings";
-            this.BackColor = Color.AliceBlue;
         }
 
         protected override void OnLoad(EventArgs e)

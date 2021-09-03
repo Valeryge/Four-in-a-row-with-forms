@@ -50,7 +50,6 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
 
             m_Buttons = new Button[columns, rows];
             this.Size = new Size(columns * 40 + 50, rows * 60 + 50);
-            this.BackColor = Color.PaleVioletRed;
             this.StartPosition = FormStartPosition.CenterScreen;
             for (int i = 0; i < columns; i++)
             {

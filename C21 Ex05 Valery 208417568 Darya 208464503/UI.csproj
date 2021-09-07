@@ -47,7 +47,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Program.cs" />
-    <Compile Include="UserInterface.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

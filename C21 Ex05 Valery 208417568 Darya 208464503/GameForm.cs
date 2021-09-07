@@ -49,7 +49,6 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
             bool isAgainstComputer = !m_SettingsForm.IsTwoPlayers;
 
             m_Buttons = new Button[columns, rows];
-            this.Size = new Size(columns * 40 + 50, rows * 60 + 50);
             this.StartPosition = FormStartPosition.CenterScreen;
             for (int i = 0; i < columns; i++)
             {
@@ -62,6 +61,8 @@ namespace C21_Ex05_Valery_208417568_Darya_208464503
                 } 
             }
 
+            int lowestButtonBottom = m_Buttons[columns - 1, rows - 1].Bottom;
+            this.Size = new Size(columns * 40 + 50, lowestButtonBottom + 80);
             m_Game = new Game(columns, rows, isAgainstComputer);
             initScorePanel(rows);
         }

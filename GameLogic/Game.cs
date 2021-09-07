@@ -17,12 +17,12 @@ namespace GameLogic
             None
         }
 
-        // $G$ CSS-999 (-3) this members should be readonly --> initialized only in the constractor.
-        private Board m_Board;
-        private Player m_Player1;
-        private Player m_Player2;
+        private readonly Board m_Board;
+        private readonly Player m_Player1;
+        private readonly Player m_Player2;
         private Player m_CurrentPlayer;
         private WinnerType m_WinnerType;
+
         public Board Board
         {
             get
